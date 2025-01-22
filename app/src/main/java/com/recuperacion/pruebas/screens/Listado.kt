@@ -15,6 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.recuperacion.pruebas.componentes.AlertDialogo
+import com.recuperacion.pruebas.componentes.AlimentoCard
 import com.recuperacion.pruebas.modelo.ComponenteDieta
 import com.recuperacion.pruebas.viewmodel.Alimento
 
@@ -30,15 +31,12 @@ fun ListadoDetalle(
 
     Column(modifier = Modifier.padding(16.dp)) {
         alimentos.forEach { alimento ->
-            Text(
-                text = "${alimento.nombre}, ${alimento.calorias} KCal",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp)
-                    .clickable {
-                        alimentoSeleccionado = alimento // Esto ahora coincide
-                        mostrarDialogo = true
-                    }
+            AlimentoCard(
+                alimento = alimento,
+                onClick = {
+                    selectedAlimento -> alimentoSeleccionado = selectedAlimento
+                    mostrarDialogo=true
+                }
             )
         }
     }
